@@ -1,0 +1,68 @@
+=== Fibonacci en mode +Function+
+
+Pour arriver à un résultat similaire sans +Observable+ nous aurions très certainement écrit cela.
+
+[source,js]
+----
+
+let fibonacciArray = () => [0, 1, 1, 2, 3, 5, 8, 13]
+
+fibonacciArray().forEach(value => {
+  console.log('Value', value)
+})
+// Value 0
+// Value 1
+// ...
+
+fibonacciArray().forEach(value => {
+  console.log('Fibonacci', value)
+})
+// Fibonacci 0
+// Fibonacci 1
+// ...
+
+----
+
+<<<
+
+=== +Function+ Vs +Observable+
+
+Quelles sont les ressemblances et les différences entre ces 2 approches ?
+
+La ressemblance principale est que nous demandons explicitement d'avoir accès aux données, soit en invoquant la fonction +fibonacciArray()+, soit en souscrivant à l'observable +fibonacciObservable.subscribe(...)+.
+
+Avec un observable l'itération est implicite puisque potentiellement nous pouvons récupérer une multitude de données.
+
+Avec un observable nous pouvons récupérer les données une par une sur un laps de temps alors qu'avec une fonction "classique" toutes les données sont récupérées en une seule fois. Cela ne se perçoit pas dans notre exemple.
+
+<<<
+
+=== Déclarer un observable asynchrone avec RxJS
+
+Déclarons désormais notre observable à partir d'un tableau avec l'opérateur +from+ pour gagner en similitude.
+
+[source,js]
+----
+
+let fibonacciObservable = Rx.Observable.from([0, 1, 1, 2, 3, 5, 8, 13])
+
+----
+
+Seulement notre exemple n'est toujours pas pertinent avec RxJS puisqu'il utilise toujours un observable synchrone.
+
+Désormais *déclarons un observable asynchrone* en utilisant les opérateurs +interval+ et +zip+.
+
+[source,js]
+----
+
+let fibonacciObservable = Rx.Observable
+  .fromArray([0, 1, 1, 2, 3, 5, 8, 13])
+  .zip(Rx.Observable.interval(1000), (value, index) => value)
+
+----
+
+<<<
+
+=== Comparatif
+
+image::content/img/simple-multiple-synchrone-asynchrone.png[width=100%, scaledwidth=90%, align=center]

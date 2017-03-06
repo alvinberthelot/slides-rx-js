@@ -1,0 +1,18 @@
+image::content/img/programming_meme.png[width=100%, scaledwidth=25%, align=center]
+
+=== Exercices
+
+Idem qu'auparavant mais cette fois-ci le tableau de valeurs est retourné *après 1 seconde d'attente*.
+
+[source,js]
+----
+
+var source = [0, 1, 1, 'foo', 2, 3, 5, 'bar', 8, 13];
+
+----
+
+Objectif : Afficher la somme du tableau (uniquement les nombres) dans la console.
+
+1. En programmation fonctionnelle.
+
+2. En utilisant les observables et les observateurs de RxJS, de manière asynchrone.

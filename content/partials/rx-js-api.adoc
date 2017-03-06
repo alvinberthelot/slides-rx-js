@@ -1,0 +1,76 @@
+== L'API RxJS
+
+<<<
+
+=== Les opérateurs
+
+L'API de ReactiveX dispose d'un certain nombre d'opérateurs (Cf. http://reactivex.io/documentation/operators.html[documentation]) que l'on peut classifier en catégorie, les plus intéressants étant :
+
+- Opérateurs de création.
+- Opérateurs de transformation.
+- Opérateurs de filtrage.
+- Opérateurs de combinaison.
+- Opérateurs de traitement d'exception.
+
+<<<
+
+=== Opérateurs de création +create+
+
+En JavaScript, tout élément ou collection de données n'est pas observable par nature, c'est pourquoi RxJS propose de faciliter la création d'observables avec des opérateurs spécifiques.
+
+L'opérateur de création le plus basique est +create+.
+
+[source,js]
+----
+
+let fibonacciObservable = Rx.Observable.create(function(observer) {
+  observer.next(0)
+  observer.next(1)
+  observer.next(1)
+  observer.next(2)
+  observer.next(3)
+  observer.next(5)
+  observer.next(8)
+  observer.next(13)
+})
+
+fibonacciObservable.subscribe(value => {
+  console.log('Value', value)
+})
+
+----
+
+<<<
+
+=== Opérateurs de création +of+
+
+
+[source,js]
+----
+
+let fibonacciObservable = Rx.Observable.of(0, 1, 1, 2, 3, 5, 8, 13)
+
+fibonacciObservable.subscribe(value => {
+  console.log('Value', value)
+})
+
+----
+
+
+
+<<<
+
+=== Opérateurs de création
+
+
+Prenons l'exemple de clics de souris sur un bouton qui sont apparentés à des flux d'événements.
+
+[source,js]
+----
+
+let button = document.getElementById('myButton');
+let clickStream = Rx.Observable.fromEvent(clickButton, 'click');
+
+----
+
+

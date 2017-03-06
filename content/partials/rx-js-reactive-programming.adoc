@@ -1,0 +1,89 @@
+== La programmation réactive
+
+<<<
+
+=== Définition de la programmation réactive
+
+[quote, 'https://fr.wikipedia.org/wiki/Programmation_r%C3%A9active[définition Wikipedia]']
+____
+La programmation réactive est un paradigme de programmation visant à conserver une cohérence d'ensemble en propageant les modifications d'*une source réactive* aux *éléments dépendants de cette source*.
+____
+
+<<<
+
+=== Source réactive / Éléments dépendants
+
+image::content/img/source-reactive.png[width=100%, scaledwidth=90%, align=center]
+
+Une source réactive peut être définie comme *un élément génèrant un flux de données dans un laps de temps*, quel que soit le type de données.
+
+<<<
+
+=== La notion d'observable
+
+Si l'on prend en considération que tout élément peut générer des données dans un laps de temps, alors quasiment tout peut se définir comme une source réactive :
+
+- Un simple tableau de valeurs.
+- Un service retournant des données en AJAX.
+- Une connexion en Web Sockets.
+- Une IHM Web avec un bouton, ou un champ de saisie ou les mouvements du curseur.
+- etc.
+
+Un élément qui génère des données sur un laps de temps peut être observé, d'ailleurs à l'avenir on emploiera le terme d'*observable* au lieu de source réactive.
+
+<<<
+
+=== La notion de souscripteur (ou observateur)
+
+Pour qu'un élément en observe un autre (et devienne *observateur*) il faut qu'il souscrive à ce dernier.
+
+image::content/img/souscription.png[width=100%, scaledwidth=65%, align=center]
+
+Il faut bien appréhender le fait qu'un élément observable n'est pas nécessairement observé. Par exemple des éléments d'une application n'ont pas nécessairement besoin d'observer les coordonnées x et y du curseur.
+
+<<<
+
+=== La notion de laps de temps
+
+Pourquoi indiquer *"dans un laps de temps"* lorsque l'on parle des observables ?
+
+Parce que généralement *on ne sait pas prédire à quel moment celui-ci va générer des données*.
+
+- Un simple tableau de valeurs : tout de suite.
+- Un service retournant des données en AJAX : ça dépend du serveur (et du réseau).
+- Le bouton d'une IHM Web : ça dépend quand l'utilisateur aura envie de cliquer.
+
+Il s'agit en fait d'un autre moyen de parler d'*asynchronisme*.
+
+<<<
+
+=== "Observable" Vs "Promise"
+
+En JavaScript, le fonctionnement de programmation asynchrone a été couvert par le biais des callbacks mais surtout depuis ES2015 par le biais des "promises".
+
+La différence notable vient du fait qu'une "promise" une fois appelée renverra forcément quelque chose et une seule fois. Alors qu'un observable peut ne jamais rien retourner ou retourner de multiple données.
+
+En résumé :
+
+Promise -> 1 valeur
+
+Observable -> [0..n] valeur(s)
+
+Les observables vont donc nous permettre de *travailler sur une collection* et ainsi de manipuler/transformer facilement les données avec des fonctions d'ordre supérieur, le tout de *manière asynchrone* !
+
+<<<
+
+=== La programmation fonctionnelle réactive
+
+Certains éléments sont définis pour produire des données (*les observables*) sans se soucier de qui les consommera.
+
+Certains éléments sont définis pour consommer des données (*les observateurs*) sans se soucier de qui les a produit.
+
+Ainsi un maximum d'éléments peuvent être responsables de leurs propres comportements *sans se soucier du contexte*.
+
+On retrouve ici le paradigme de la programmation fonctionelle qui veut qu'on ne soucie jamais du contexte d'exécution d'une fonction.
+
+Les paradigmes de programmation fonctionnelle et de programmation réactive sont tout à fait compatibles, leur combinaison est appelée *la programmation fonctionnelle réactive* (FRP : Fonctional Reactive Programming).
+
+<<<
+

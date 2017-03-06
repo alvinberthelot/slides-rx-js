@@ -1,0 +1,20 @@
+image::content/img/programming_meme.png[width=100%, scaledwidth=25%, align=center]
+
+=== Exercices
+
+Vous allez déclarer un tableau de valeurs. Avec vous devez afficher la somme du tableau (uniquement les nombres) dans la console.
+
+[source,js]
+----
+
+var source = [0, 1, 1, 'foo', 2, 3, 5, 'bar', 8, 13];
+
+----
+
+
+
+1. En programmation fonctionnelle.
+
+2. En utilisant les observables et les observateurs de RxJS, de manière synchrone.
+
+3. Indiquer une erreur lorsque le flux contient une valeur qui n'est pas un nombre.

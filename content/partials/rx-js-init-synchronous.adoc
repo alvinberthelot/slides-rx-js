@@ -1,0 +1,68 @@
+== ReactiveX
+
+<<<
+
+=== Librairie ReactiveX
+
+http://reactivex.io/[ReactiveX] est une librairie disposant d'API pour la programmation asynchrone reposant sur *la notion d'observable*.
+
+L'utilisation des observables va permettre de construire des applications selon le paradigme de *programmation réactive*.
+
+Cette librairie est implémentée pour différents langages : Java, JavaScript, .NET, Swift, ainsi que pour de http://reactivex.io/languages.html[nombreux autres langages].
+
+Par la suite, nous nous focaliserons bien évidemment sur ReactiveX pour JavaScript, communément appelée https://github.com/Reactive-Extensions/RxJS[RxJS].
+
+<<<
+
+=== Déclarer un observable avec RxJS
+
+Il existe de nombreux opérateurs pour créer un observable avec RxJS, nous verrons cela avec l'API et les opérateurs de création.
+
+Pour l'instant créons notre propre flux de données en déclarant nos données (la suite de Fibonacci) à envoyer une par une.
+
+[source,js]
+----
+
+let fibonacciObservable = Rx.Observable.create(function(observer) {
+  observer.next(0)
+  observer.next(1)
+  observer.next(1)
+  observer.complete()
+})
+
+----
+
+TIP: Un observable dispose de 3 callbacks sur l'observateur : +next+, +error+ et +complete+ (http://reactivex.io/rxjs/class/es6/MiscJSDoc.js~ObserverDoc.html[Cf. documentation]) pour lui indiquer le traitement de son flux.
+
+<<<
+
+=== Déclarer un observateur avec RxJS
+
+Un observable en soit n'a que très peu d'intérêt, cela devient intéressant lorsqu'un (ou plusieurs) observateur(s) consomme(nt) son flux de données.
+
+[source,js]
+----
+
+fibonacciObservable.subscribe(value => {
+  console.log('Value', value)
+})
+// Value 0
+// Value 1
+// ...
+
+fibonacciObservable.subscribe(
+  value => {
+    console.log('Fibonacci', value)
+  },
+  error => {
+    console.error(error)
+  },
+  () => {
+    console.log('Fibonacci c\'est fini')
+  })
+// Fibonacci 0
+// Fibonacci 1
+// ...
+// Fibonacci c'est fini
+
+----
