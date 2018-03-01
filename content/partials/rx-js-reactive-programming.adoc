@@ -53,7 +53,7 @@ Parce que généralement *on ne sait pas prédire à quel moment celui-ci va gé
 - Un service retournant des données en AJAX : ça dépend du serveur (et du réseau).
 - Le bouton d'une IHM Web : ça dépend quand l'utilisateur aura envie de cliquer.
 
-Il s'agit en fait d'un autre moyen de parler d'*asynchronisme*.
+Si on ne récupère pas les valeurs tout de suite, il s'agit en fait d'un autre moyen de parler d'*asynchronisme*.
 
 <<<
 
@@ -61,13 +61,11 @@ Il s'agit en fait d'un autre moyen de parler d'*asynchronisme*.
 
 En JavaScript, le fonctionnement de programmation asynchrone a été couvert par le biais des callbacks mais surtout depuis ES2015 par le biais des "promises".
 
-La différence notable vient du fait qu'une "promise" une fois appelée renverra forcément quelque chose et une seule fois. Alors qu'un observable peut ne jamais rien retourner ou retourner de multiple données.
+Il existe plusieurs différences entre les observables et les promises :
 
-En résumé :
-
-Promise -> 1 valeur
-
-Observable -> [0..n] valeur(s)
+- Une "promise" une fois appelée renverra forcément quelque chose et une seule fois. Alors qu'un observable peut ne jamais rien retourner ou retourner de multiple données.
+- Une "promise" est forcément asynchrone alors qu'un observable peut être soit synchrone, soit asynchrone ; tout dépend de sa source de données.
+- Une "promise" est "eager" alors qu'un observable est "lazy".
 
 Les observables vont donc nous permettre de *travailler sur une collection* et ainsi de manipuler/transformer facilement les données avec des fonctions d'ordre supérieur, le tout de *manière asynchrone* !
 

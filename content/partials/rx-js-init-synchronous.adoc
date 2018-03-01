@@ -48,7 +48,7 @@ fibonacciObservable.subscribe(value => {
 })
 // Value 0
 // Value 1
-// ...
+// Value 1
 
 fibonacciObservable.subscribe(
   value => {
@@ -62,7 +62,7 @@ fibonacciObservable.subscribe(
   })
 // Fibonacci 0
 // Fibonacci 1
-// ...
+// Fibonacci 1
 // Fibonacci c'est fini
 
 ----
